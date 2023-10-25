@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  full-stack-login-page:
+    build: .
+    container_name: full-stack-login-page
+    depends_on:
+      - user-login
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://user-login:5432/user-login
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+
+  user-login:
+    image: postgres
+    container_name: user-login
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
