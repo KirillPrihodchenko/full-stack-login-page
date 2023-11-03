@@ -29,8 +29,7 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity<com.auth.fullstackloginpage.model.User> registrationPage(
-            @RequestBody @Valid UserRegistrationRequest userRegistrationRequest
-    ) {
+            @RequestBody @Valid UserRegistrationRequest userRegistrationRequest) {
 
         return new ResponseEntity<>(
                 userService.createUser(userRegistrationRequest),

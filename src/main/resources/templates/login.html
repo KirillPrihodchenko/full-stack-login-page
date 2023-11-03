@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Log in</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/login-style.css">
 </head>
     <body>
         <form action="http://localhost:8080/api/v1" method="POST">
+            <div class="login-container">
+                <h3>Welcome Back!</h3>
+                <a>Please sign in to your account</a>
 
-            <label for="email">Email: </label>
-            <input type="text" id="email" name="email" required>
-            <br>
+                <label for="email"></label>
+                <input type="text" id="email" name="email" required placeholder="Email">
 
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" required>
-            <br>
+                <label for="password"></label>
+                <input type="password" id="password" name="password" required placeholder="Password">
 
-            <input type="submit" value="Log in">
+                <input type="submit" value="Login">
+            </div>
 
+            <div class="google-login-container">
+                <button type="submit">
+                    <img src="../image/GoogleLogo.svg" alt="Google logo"> Google Login
+                </button>
+            </div>
+
+            <div class="redirect-to-registration">
+                <p>
+                    Don't Have An Account? <a href="registration.html" target="_blank">Sign Up</a>
+                </p>
+            </div>
         </form>
     </body>
 </html>

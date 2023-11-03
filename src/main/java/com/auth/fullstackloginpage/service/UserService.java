@@ -24,9 +24,8 @@ public class UserService {
         try {
             checkOnExist(userRegistrationRequest.getEmail());
 
-            return userRepository.save(
-                    userRegistrationMapping.convertToEntity(userRegistrationRequest)
-            );
+            User user = userRegistrationMapping.convertToEntity(userRegistrationRequest);
+            return userRepository.save(user);
         }
         catch (UserNotCreatedException e) {
 
