@@ -1,0 +1,104 @@
+body {
+    background-color: #191919;
+    color: grey;
+}
+
+a {
+    display: block;
+    margin-bottom: 60px;
+    color: grey;
+}
+
+.redirect-to-login p.inline {
+    display: inline;
+}
+
+.redirect-to-login {
+    position: fixed;
+    bottom: 5px;
+    right: 20px;
+    margin: 20px;
+}
+
+.redirect-to-login a {
+    display: inline;
+    color: #045ba6;
+    text-decoration: none;
+}
+
+.registration-container h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+.registration-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.registration-container label {
+    display: block;
+    margin: 10px 0;
+}
+
+.registration-container input[type="text"],
+.registration-container input[type="email"],
+.registration-container input[type="password"],
+.registration-container input[type="submit"] {
+    border-radius: 17px;
+    padding: 20px;
+    margin: 2px 0;
+    width: 55%;
+}
+
+.registration-container input[type="text"],
+.registration-container input[type="email"],
+.registration-container input[type="password"] {
+    background-color: #232323;
+    color: #056be8;
+}
+
+.registration-container input[type="submit"] {
+    margin-top: 60px;
+    background-color: #056be8;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.registration-container input[type="submit"]:active {
+    background-color: #045ba6;
+}
+
+.google-registration-container button[type="submit"] img {
+    max-width: 25px;
+    margin-right: 10px;
+}
+
+.google-registration-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.google-registration-container button[type="submit"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 17px;
+    padding: 20px;
+    margin: 10px auto;
+    width: 55%;
+    background-color: white;
+    color: black;
+}
+
+.google-registration-container button[type="submit"]:active {
+    background-color: grey;
+}
+
+.google-registration-container button[type="submit"]:active img {
+    filter: none;
+}

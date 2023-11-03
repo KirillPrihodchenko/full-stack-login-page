@@ -27,6 +27,8 @@ body {
 
 .redirect-to-registration a {
     display: inline;
+    color: #045ba6;
+    text-decoration: none;
 }
 
 .login-container {
