@@ -14,3 +14,8 @@ spring:
 #--------------------flyway properties--------------------#
   flyway:
     baseline-on-migrate: true
+
+#--------------------jwt token--------------------#
+  jwt:
+    secret: b64r9mCtI4x3aLkKjpM7K7Q6w7I6Z4pHxu1b8G8Hw2M9sV5fY3jR2uN1wW6tA0pP4oQ2vN5xY2zT8kI1gX3rF7yM2bT0oH1zR9a
+    expired-time: 36000000

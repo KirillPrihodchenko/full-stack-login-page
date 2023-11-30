@@ -1,5 +1,6 @@
 package com.auth.fullstackloginpage.controller;
 
+import com.auth.fullstackloginpage.dto.UserLoginRequest;
 import com.auth.fullstackloginpage.dto.UserRegistrationRequest;
 import com.auth.fullstackloginpage.service.UserService;
 import jakarta.validation.Valid;
@@ -20,12 +21,15 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping
-//    public List<User> loginInSystem(
-//            @RequestBody @Valid UserLoginRequest userLoginRequest
-//    ) {
-//
-//    }
+    @PostMapping
+    public ResponseEntity<?> loginInSystem(
+            @RequestBody @Valid UserLoginRequest userLoginRequest
+    ) {
+        return new ResponseEntity<>(
+                userService.loadUserByUsername(userLoginRequest.getEmail()),
+                HttpStatus.OK
+        );
+    }
 
     @PostMapping("/")
     public ResponseEntity<com.auth.fullstackloginpage.model.User> registrationPage(
