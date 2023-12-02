@@ -16,7 +16,7 @@ public class JwtTokenUtil {
 
     @Value("${spring.jwt.secret}")
     private String secret;
-    @Value("${spring.jwt.secret}")
+    @Value("${spring.jwt.expired-time}")
     private String expiredTime;
 
     public String generateJwtToken(Authentication authentication) {

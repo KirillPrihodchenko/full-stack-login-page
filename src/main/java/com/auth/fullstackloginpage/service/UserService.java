@@ -6,7 +6,6 @@ import com.auth.fullstackloginpage.dto.UserRegistrationRequest;
 import com.auth.fullstackloginpage.exception.UserNotCreatedException;
 import com.auth.fullstackloginpage.model.User;
 import com.auth.fullstackloginpage.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,24 +24,17 @@ public class UserService implements UserDetailsService {
 
     public User createUser(UserRegistrationRequest userRegistrationRequest) {
 
-        try {
-            checkOnExist(userRegistrationRequest.getEmail());
+        checkOnExist(userRegistrationRequest.getEmail());
 
-            User user = userRegistrationMapping.convertToEntity(userRegistrationRequest);
-            return userRepository.save(user);
-        }
-        catch (UserNotCreatedException e) {
-
-            throw new UserNotCreatedException("Failed to create user", e);
-        }
+        User user = userRegistrationMapping.convertToEntity(userRegistrationRequest);
+        return userRepository.save(user);
     }
 
     private void checkOnExist(String email) {
 
-        userRepository.findUserByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        String.format("User with email: '%s' not found", email)
-                ));
+        if (userRepository.findUserByEmail(email).isPresent()) {
+            throw new UserNotCreatedException("User with email already exists", new Throwable());
+        }
     }
 
     @Override
