@@ -14,7 +14,7 @@ public class UserDetailsImp implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImp(UUID id, String email, String password) {
+    public UserDetailsImp(UUID id, String email, String password, String role) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -24,7 +24,8 @@ public class UserDetailsImp implements UserDetails {
         return new UserDetailsImp(
                 user.getId(),
                 user.getEmail(),
-                user.getPassword()
+                user.getPassword(),
+                user.getRole()
         );
     }
 

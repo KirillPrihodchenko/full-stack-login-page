@@ -38,10 +38,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/api/v1").permitAll()
+                .requestMatchers("/api/v1/login").permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -59,11 +56,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
     public DaoAuthenticationProvider userDaoAuthenticationProvider() {
 
         DaoAuthenticationProvider guestDaoAuthenticationProvider = new DaoAuthenticationProvider();
@@ -71,5 +63,10 @@ public class SecurityConfig {
         guestDaoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
 
         return guestDaoAuthenticationProvider;
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 }

@@ -20,14 +20,15 @@ public class UserService implements UserDetailsService {
     public UserService(UserRepository userRepository, UserRegistrationMapping userRegistrationMapping) {
         this.userRepository = userRepository;
         this.userRegistrationMapping = userRegistrationMapping;
-   }
+    }
 
-    public User createUser(UserRegistrationRequest userRegistrationRequest) {
+    public String createUser(UserRegistrationRequest userRegistrationRequest) {
 
         checkOnExist(userRegistrationRequest.getEmail());
 
         User user = userRegistrationMapping.convertToEntity(userRegistrationRequest);
-        return userRepository.save(user);
+        userRepository.save(user);
+        return "User registered successfully!";
     }
 
     private void checkOnExist(String email) {
