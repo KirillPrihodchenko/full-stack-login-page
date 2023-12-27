@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Log in</title>
     <link rel="stylesheet" type="text/css" href="../static/css/login-style.css">
 </head>
     <body>
-        <form action="http://localhost:8080/api/v1" method="POST">
+        <form th:action="@{/api/v1/login}" method="POST" th:object="${userLoginRequest}">
             <div class="login-container">
                 <h3>Welcome Back!</h3>
                 <a>Please sign in to your account</a>
 
                 <label for="email"></label>
-                <input type="text" id="email" name="email" required placeholder="Email">
+                <input type="text" id="email" name="email" th:required="required" placeholder="Email">
 
                 <label for="password"></label>
-                <input type="password" id="password" name="password" required placeholder="Password">
+                <input type="password" id="password" name="password" th:required="required" placeholder="Password">
 
                 <input type="submit" value="Login">
             </div>
 
             <div class="google-login-container">
                 <button type="submit">
+                    <a th:href="@{/oauth2/authorization/google}">
                     <img src="../image/GoogleLogo.svg" alt="Google logo"> LOg In By Google
+                    </a>
                 </button>
             </div>
 
             <div class="redirect-to-registration">
                 <p>
-                    Don't Have An Account? <a href="registration.html" target="_blank">Sign Up</a>
+                    Don't Have An Account? <a href="registration.html" >Sign Up</a>
                 </p>
             </div>
         </form>

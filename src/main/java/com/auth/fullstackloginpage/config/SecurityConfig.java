@@ -18,6 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -35,11 +37,19 @@ public class SecurityConfig {
 
         http.
                 csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests()
-                .requestMatchers("/api/v1/").permitAll()
-                .requestMatchers("/api/v1/login").permitAll()
-                .and()
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/api/v1/").permitAll()
+                                .requestMatchers("/api/v1/login").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(withDefaults())
+                .oauth2Login(oauth2Login ->
+                        oauth2Login
+                                .loginPage("/login.html")
+                                .defaultSuccessUrl("/oauth2-login-success")
+                                .userInfoEndpoint().userService(userService)
+                )
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .exceptionHandling()

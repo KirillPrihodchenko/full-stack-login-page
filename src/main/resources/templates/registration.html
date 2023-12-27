@@ -1,40 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registration</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/registration-style.css">
-</head>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/registration-style.css">
+    </head>
     <body>
-        <form action="http://localhost:8080/api/v1/" method="POST">
+        <form th:action="@{/api/v1/}" method="POST" th:object="${userRegistrationRequest}">
             <div class="registration-container">
                 <h3>Create New Account</h3>
                 <a>Please fill in the form to continue</a>
 
-                <label for="firstName"></label>
-                <input type="text" id="firstName" name="firstName" required placeholder="First Name">
-
-                <label for="lastName"></label>
-                <input type="text" id="lastName" name="lastName" required placeholder="Last Name">
+                <label for="username"></label>
+                <input type="text" id="username" name="username" th:required="required" placeholder="Username">
 
                 <label for="email"></label>
-                <input type="email" id="email" name="email" required placeholder="Email">
+                <input type="email" id="email" name="email" th:required="required" placeholder="Email">
 
                 <label for="password"></label>
-                <input type="password" id="password" name="password" required placeholder="Password">
+                <input type="password" id="password" name="password" th:required="required" placeholder="Password">
 
                 <input type="submit" value="Register">
             </div>
 
-            <div class="google-registration-container">
-                <button type="submit">
-                    <img src="../image/GoogleLogo.svg" alt="Google logo"> Sign Up By Google
-                </button>
-            </div>
-
             <div class="redirect-to-login">
                 <p>
-                    Have An Account? <a href="login.html" target="_blank">Sign In</a>
+                    Have An Account? <a href="login.html" >Sign In</a>
                 </p>
             </div>
         </form>
